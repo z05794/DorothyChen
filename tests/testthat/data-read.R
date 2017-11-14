@@ -1,12 +1,8 @@
-context("Data Reading")
+context("File Name")
 
 library(testthat)
 
-test_that("fars_read", {
-  dir <- "./data/"
-  df <- fars_read(paste0(dir, "accident_2013.csv.bz2"))
-  expect_true(nrow(df) > 1)
-  expect_true(ncol(df) == 50)
-
+test_that("the filename is string", {
+  filename <- make_filename(2013)
+  expect_that(filename, is_a("character"))
 })
-

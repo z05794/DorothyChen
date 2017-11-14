@@ -19,6 +19,6 @@ show an error message "file (file name) does not exist"
 }
 \examples{
 \dontrun{
-fars_read("accident_2013.csv.bz2")
+fars_read("data/accident_2013.csv.bz2")
 }
 }

@@ -9,7 +9,8 @@ Depends:
 Imports:
     readr,
     dplyr,
-    tidyr
+    tidyr,
+    maps
 Suggests:
     testthat,
     knitr,

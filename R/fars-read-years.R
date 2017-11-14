@@ -10,7 +10,6 @@
 #' \dontrun{
 #' fars_read_years(c(2013, 2014, 2015))
 #' }
-#' Uses the functions \code{make_filename} and \code{fars_read}.
 #' @importFrom dplyr mutate select
 #' @export
 fars_read_years <- function(years) {

@@ -21,5 +21,4 @@ doesn't exist a matching data file showing what year the "invalid year" is.
 \dontrun{
 fars_read_years(c(2013, 2014, 2015))
 }
-Uses the functions \\code{make_filename} and \\code{fars_read}.
 }

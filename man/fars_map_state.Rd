@@ -22,8 +22,7 @@ If there are no accidents, a message is printed as "no accidents to plot"
 to the console.
 }
 \examples{
-\donttest{
+\dontrun{
 fars_map_state(1, 2014)
 }
-Uses the functions \\code{make_filename} and \\code{fars_read}.
 }

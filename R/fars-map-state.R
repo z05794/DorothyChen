@@ -9,10 +9,9 @@
 #' @return A map that gives the lattitude and lognitude of accidents in a
 #' selected  year.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' fars_map_state(1, 2014)
 #' }
-#' Uses the functions \code{make_filename} and \code{fars_read}.
 #' @importFrom dplyr filter
 #' @importFrom maps map
 #' @importFrom graphics points

@@ -1,0 +1,33 @@
+library(earthquakeDC)
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+This vignette has a brief overview of the earthquakeDC R package created to visualize NOAA earthquake data. It cleans data and visualizes them using ggplot2 and leaflet packages.
+
+Package functions
+There are four exported functions available to users:
+
+eq_clean_data()
+eq_map()
+eq_create_label()
+geom_timeline()
+
+
+eq_clean_data(df)
+The first function is required to clean data for the visualization. It creates a DATE column in Date format, transforms latitude and longitude to numeric format and trims country from LOCATION_NAME.
+
+filename <- system.file("inst/data/signif.txt", package = "earthquakeDC")
+df <- readr::read_delim(filename, delim = "\t")
+
+
+The rest three functions uses ggplot2 package to display earthquakes' timeline. 
+
+geom_timeline()
+This function geom requires clean data created from the eq_clean_data function . The required aesthetics is x with dates,  y axis is optionalfor grouping by country, and size and color that can be applied by users.
+
+eq_map()
+This package uses leaflet functions to show earthquakes on a map using eq_map() function. 
+
+eq_create_label()
+Lable can be created with this function.

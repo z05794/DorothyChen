@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Cleans source data from NOAA\n#' @param data A data frame with raw data obtained from NOAA website (see below)\n#' @return A data frame with cleaned date, latitude, longitude and location\n#' columns\n#' @examples\n#' \\dontrun{\n#' clean_data <- eq_clean_data(\"signif.txt\")\n#' }\n#' @importFrom dplyr %>% mutate select\n#' @importFrom lubridate ymd\n#' @importFrom stringr str_to_title str_pad\n#' @export\n\neq_clean_data <- function(df) {\n  clean_data <- df %>%\n    select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE, YEAR, MONTH, DAY, HOUR,\n           EQ_MAG_ML, DEATHS, TOTAL_DEATHS, EQ_PRIMARY) %>%\n    mutate(LOCATION_NAME = str_to_title(gsub(\"[^;\\n]+[:]\", \"\", LOCATION_NAME)),\n           LATITUDE = as.numeric(LATITUDE),\n           LONGITUDE = as.numeric(LONGITUDE),\n           DEATHS = as.numeric(DEATHS)) %>%\n    mutate(year = str_pad(as.character(abs(YEAR)), width = 4, side = \"left\",\n                          pad = \"0\"),\n           date_paste = paste(year, MONTH, DAY, sep = \"-\"),\n           datetime = ymd(date_paste, truncated = 2)) %>%\n    select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE, datetime,\n           EQ_MAG_ML, DEATHS, TOTAL_DEATHS, EQ_PRIMARY)\n  names(clean_data) <- tolower(names(clean_data))\n  return(clean_data)\n}\n",
+    "created" : 1514523031677.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1119161706",
+    "id" : "5006EBE7",
+    "lastKnownWriteTime" : 1514523454,
+    "last_content_update" : 1514523454407,
+    "path" : "~/coursera/capstone/earthquakeDC/R/eq-clean-data.R",
+    "project_path" : "R/eq-clean-data.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

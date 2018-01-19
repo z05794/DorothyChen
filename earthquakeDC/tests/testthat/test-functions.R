@@ -1,8 +1,7 @@
 context("Test functions")
 library(earthquakeDC)
 
-filename <- system.file("inst/data/signif.txt", package = "earthquakeDC")
-df <- readr::read_delim(filename, delim = "\t")
+df <- earthquakeDC::df
 
 test_that("eq_clean_data returns a data frame", {
   expect_is(eq_clean_data(df), "data.frame")

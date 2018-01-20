@@ -6,22 +6,23 @@ library(readr)
 This vignette has a brief overview of the earthquakeDC R package created to visualize NOAA earthquake data. It cleans data and visualizes them using ggplot2 and leaflet packages.
 
 Package functions
-There are six functions as following:
+There are seven functions as following:
 
 eq_clean_data()
+eq_location_clean()
 eq_map()
 eq_create_label()
 geom_timeline()
-geom_timeline_label())
-theme_timeline())
+geom_timeline_label()
+theme_timeline()
 
-eq_clean_data()
-This function is to extract data and clean data for the visualization. It creates a datatime column in date format and transforms latitude and longitude to numerics This funtion aslo changes location_name to country names.
+eq_clean_data() & eq_location_clean()
+This first function is to extract data and clean data for the visualization. It creates a datatime column in date format and transforms latitude and longitude to numerics The second funtion changes location_name to country names.
 Examples:
 fpath <- system.file("exdata/signif.txt", package = "earthquake.dc")
 df <- readr::read_delim(fpath, delim = "\t")
 eq_clean_data(df)
-
+eq_location_clean()
 
 Visualize earthquake timeline
 The rest functions use ggplot2 to display earthquakes' timeline. 

@@ -13,6 +13,7 @@
 #' @importFrom dplyr %>% mutate select
 #' @importFrom lubridate ymd
 #' @importFrom stringr str_to_title str_pad
+#' @importFrom stats df
 #' @export
 
 eq_clean_data <- function(df) {

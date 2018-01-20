@@ -1,0 +1,47 @@
+library(earthquake.dc)
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+This vignette has a brief overview of the earthquakeDC R package created to visualize NOAA earthquake data. It cleans data and visualizes them using ggplot2 and leaflet packages.
+
+Package functions
+There are six functions as following:
+
+eq_clean_data()
+eq_map()
+eq_create_label()
+geom_timeline()
+geom_timeline_label())
+theme_timeline())
+
+eq_clean_data()
+This function is to extract data and clean data for the visualization. It creates a datatime column in date format and transforms latitude and longitude to numerics This funtion aslo changes location_name to country names.
+Examples:
+fpath <- system.file("exdata/signif.txt", package = "earthquake.dc")
+df <- readr::read_delim(fpath, delim = "\t")
+eq_clean_data(df)
+
+
+Visualize earthquake timeline
+The rest functions use ggplot2 to display earthquakes' timeline. 
+The basic geom_timeline() requires clean data from the funtion eq_clean_data().
+The required aesthetics is x with dates, optional are y for selected countries,
+and size and color that can be use according to user needs. 
+The geom_timeline_label() function requires additional label aesthetic for labeling. 
+For better visualization of these two geoms, theme_timeline() theme was added. 
+An example:
+
+    eq_clean_data(df) %>%
+    dplyr::filter(country %in% c("USA", "MEXICO"), year > 2000) %>%
+    ggplot2::ggplot(ggplot2::aes(x = datetime, y = country,
+                                 color = as.numeric(deaths),
+                                 size = as.numeric(eq_primary)))
+
+Show earthquakes on a map
+function eq_map() applied leaflet functions to show earthquakes on a map. The map is automatically trimmed to display the input data frame. Optional annotations can be created using eq_create_label() function. The result is an interactive map where user can click on individual points to get details: 
+
+    eq_clean_data(df) %>%
+    dplyr::filter(country == "MEXICO" & lubridate::year(datetime) >= 2000) %>%
+    dplyr::mutate(popup_text = eq_create_label(.)) %>%
+    eq_map(annotation_col = "popup_text")

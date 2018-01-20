@@ -50,7 +50,7 @@ test_that("theme_timeline returns ggplot object", {
 })
 
 
-test_that("eq_map returns leaflet object", {
+test_that("eq_map returns leaflet and htmlwidget object", {
   label <- eq_clean_data(df) %>%
     dplyr::filter(country == "MEXICO" & lubridate::year(datetime) >= 2000) %>%
     dplyr::mutate(popup_text = eq_create_label(.)) %>%

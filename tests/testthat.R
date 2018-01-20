@@ -1,4 +1,4 @@
 library(testthat)
-library(earthquakeDC)
+library(earthquake.dc)
 
-test_check("earthquakeDC")
+test_check("earthquake.dc")

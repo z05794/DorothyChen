@@ -21,6 +21,7 @@ Creates a map of selected earthquakes by country and time.
 }
 \examples{
 \dontrun{
+df <- readr::read_delim("exdata/signif.txt", delim = "\\t")
 eq_map(df, annotation_col = "location_name")
 }
 }

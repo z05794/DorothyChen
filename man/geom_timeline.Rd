@@ -56,7 +56,7 @@ Timeline of earthquakes
 }
 \examples{
 \dontrun{
-data \%>\% eq_clean_data() \%>\%
+df \%>\% eq_clean_data() \%>\%
    filter(country \%in\% c("USA", "MEXICO"), year(datetime) > 2000) \%>\%
    ggplot(aes(x = datetime,
               y = country,

@@ -7,7 +7,7 @@
 eq_create_label(df)
 }
 \arguments{
-\item{data}{A data frame containing cleaned NOAA earthquake data}
+\item{df}{A data frame containing cleaned NOAA earthquake data}
 }
 \value{
 A character vector with labels
@@ -17,6 +17,7 @@ Creates a label for leaflet map
 }
 \examples{
 \dontrun{
+df <- readr::read_delim("exdata/signif.txt", delim = "\\t")
 eq_create_label(df)
 }
 }

@@ -18,10 +18,10 @@ Cleans source data from NOAA
 }
 \examples{
 \dontrun{
-raw_data <- readr::read_delim("exdata/signif.txt", delim = "\\t")
+df <- readr::read_delim("exdata/signif.txt", delim = "\\t")
 library(dplyr)
 library(stringr)
 library(lubridate)
-clean_data <- eq_clean_data(raw_data)
+clean_data <- eq_clean_data(df)
 }
 }

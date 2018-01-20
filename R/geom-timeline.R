@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' data %>% eq_clean_data() %>%
+#' df %>% eq_clean_data() %>%
 #'    filter(country %in% c("USA", "MEXICO"), year(datetime) > 2000) %>%
 #'    ggplot(aes(x = datetime,
 #'               y = country,
@@ -25,7 +25,7 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 
   ggplot2::layer(
     geom = GeomTimeline, mapping = mapping,
-    data = data, stat = stat, position = position,
+    data = df, stat = stat, position = position,
     show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
@@ -45,10 +45,10 @@ GeomTimeline <-
     draw_key = ggplot2::draw_key_point,
     draw_panel = function(data, panel_scales, coord) {
       
-      if (!("y" %in% colnames(data))) {
-        data$y <- 0.15
+      if (!("y" %in% colnames(df))) {
+        df$y <- 0.15
       }
-      coords <- coord$transform(data, panel_scales)
+      coords <- coord$transform(df, panel_scales)
       
       points <- grid::pointsGrob(
         coords$x, coords$y,
@@ -80,7 +80,7 @@ GeomTimeline <-
 #' @importFrom ggplot2 layer
 #' @examples
 #' \dontrun{
-#' data %>% eq_clean_data() %>%
+#' df %>% eq_clean_data() %>%
 #'    filter(country %in% c("USA", "MEXICO"), year > 2000) %>%
 #'    ggplot(aes(x = datetime,
 #'               y = country,
@@ -99,7 +99,7 @@ geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
   
   ggplot2::layer(
     geom = GeomTimelineLabel, mapping = mapping,
-    data = data, stat = stat, position = position,
+    data = df, stat = stat, position = position,
     show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, n_max = n_max, ...)
   )
@@ -115,25 +115,25 @@ GeomTimelineLabel <-
     draw_key = ggplot2::draw_key_blank,
     setup_data = function(data, params) {
       if (!is.null(params$n_max)) {
-        if (!("size" %in% colnames(data))) {
+        if (!("size" %in% colnames(df))) {
           stop(paste("'size' aesthetics needs to be",
                      "provided when 'n_max' is defined."))
         }
-        data <- data %>%
+        df <- df %>%
           dplyr::group_by_("group") %>%
           dplyr::top_n(params$n_max, size) %>%
           dplyr::ungroup()
       }
-      data
+      df
     },
-    draw_panel = function(data, panel_scales, coord, n_max) {
+    draw_panel = function(df, panel_scales, coord, n_max) {
       
-      if (!("y" %in% colnames(data))) {
+      if (!("y" %in% colnames(df))) {
         data$y <- 0.15
       }
       
-      coords <- coord$transform(data, panel_scales)
-      n_grp <- length(unique(data$group))
+      coords <- coord$transform(df, panel_scales)
+      n_grp <- length(unique(df$group))
       offset <- 0.2 / n_grp
       
       lines <- grid::polylineGrob(
@@ -159,7 +159,7 @@ GeomTimelineLabel <-
 #' Theme for better timeline visualization in ggplot2
 #' @examples
 #' \dontrun{
-#' data %>% eq_clean_data() %>%
+#' df %>% eq_clean_data() %>%
 #' filter(country %in% c("USA", "MEXICO"), year > 2000) %>%
 #'    ggplot(aes(x = datatime,
 #'               y = country,

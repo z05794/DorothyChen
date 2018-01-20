@@ -7,6 +7,7 @@
 #' @importFrom leaflet leaflet addTiles addCircleMarkers
 #' @examples
 #' \dontrun{
+#' df <- readr::read_delim("exdata/signif.txt", delim = "\t")
 #' eq_map(df, annotation_col = "location_name")
 #' }
 
@@ -26,6 +27,7 @@ eq_map <- function(df, annotation_col) {
 #' @export
 #' @examples
 #' \dontrun{
+#' df <- readr::read_delim("exdata/signif.txt", delim = "\t")
 #' eq_create_label(df)
 #' }
 #' @return A character vector with labels

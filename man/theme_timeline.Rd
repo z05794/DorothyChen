@@ -11,7 +11,7 @@ Theme for better timeline visualization in ggplot2
 }
 \examples{
 \dontrun{
-data \%>\% eq_clean_data() \%>\%
+df \%>\% eq_clean_data() \%>\%
 filter(country \%in\% c("USA", "MEXICO"), year > 2000) \%>\%
    ggplot(aes(x = datatime,
               y = country,

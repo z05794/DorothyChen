@@ -22,7 +22,7 @@ eq_map <- function(df, annotation_col) {
 }
 
 #' Creates a label for leaflet map
-#' @param data A data frame containing cleaned NOAA earthquake data
+#' @param df A data frame containing cleaned NOAA earthquake data
 #' @export
 #' @examples
 #' \dontrun{

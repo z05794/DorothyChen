@@ -4,11 +4,11 @@
 #' columns
 #' @examples
 #' \dontrun{
-#' raw_data <- readr::read_delim("exdata/signif.txt", delim = "\t")
+#' df <- readr::read_delim("exdata/signif.txt", delim = "\t")
 #' library(dplyr)
 #' library(stringr)
 #' library(lubridate)
-#' clean_data <- eq_clean_data(raw_data)
+#' clean_data <- eq_clean_data(df)
 #' }
 #' @importFrom dplyr %>% mutate select
 #' @importFrom lubridate ymd
@@ -19,17 +19,17 @@ eq_clean_data <- function(df) {
   clean_data <- df %>%
     dplyr::select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE, YEAR, MONTH,
                   DAY, HOUR,EQ_MAG_ML, DEATHS, TOTAL_DEATHS, EQ_PRIMARY) %>%
-    dplyr::mutate(LOCATION_NAME = str_to_title(gsub("[^;\n]+[:]", "", 
-                                                    LOCATION_NAME)),
+    dplyr::mutate(LOCATION_NAME = stringr::str_to_title(gsub("[^;\n]+[:]", "",
+                                                             LOCATION_NAME)),
                   LATITUDE = as.numeric(LATITUDE),
                   LONGITUDE = as.numeric(LONGITUDE),
                   DEATHS = as.numeric(DEATHS), 
-                  year = str_pad(as.character(abs(YEAR)), width = 4, 
-                                 side = "left", pad = "0"),
+                  year = stringr::str_pad(as.character(abs(YEAR)), width = 4,
+                                          side = "left", pad = "0"),
                   date_paste = paste(year, MONTH, DAY, sep = "-"),
-                  datetime = ymd(date_paste, truncated = 2)) %>%
-    dplyr::select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE, datetime, year,
-                  EQ_MAG_ML, DEATHS, TOTAL_DEATHS, EQ_PRIMARY)
+                  datetime = lubridate::ymd(date_paste, truncated = 2)) %>%
+    dplyr::select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE,year,
+                  EQ_MAG_ML, DEATHS, EQ_PRIMARY,  datetime)
   names(clean_data) <- tolower(names(clean_data))
   return(clean_data)
 }

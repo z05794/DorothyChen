@@ -1,0 +1,3 @@
+https://travis-ci.org/z05794/DorothyChen.svg?branch=final
+
+This earthquakeDC R package is created to visualize NOAA earthquake data.

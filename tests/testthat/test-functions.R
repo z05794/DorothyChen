@@ -2,7 +2,7 @@ context("Test functions")
 library(testthat)
 library(earthquake.dc)
 
-fpath <- system.file("inst/exdata/signif.txt", package = "earthquake.dc")
+fpath <- system.file("exdata/signif.txt", package = "earthquake.dc")
 df <- readr::read_delim(fpath, delim = "\t")
 
 test_that("eq_clean_data returns a data frame", {
@@ -17,7 +17,6 @@ test_that("eq_clean_data returns numeric coordinates", {
   expect_is(eq_clean_data(df)$latitude, "numeric")
   expect_is(eq_clean_data(df)$longitude, "numeric")
 })
-
 
 test_that("geom_timeline returns ggplot object", {
   g_df <- df %>% eq_clean_data() %>%
@@ -48,7 +47,6 @@ test_that("theme_timeline returns ggplot object", {
     theme_timeline()
   expect_is(g_df, "ggplot")
 })
-
 
 test_that("eq_map returns leaflet and htmlwidget object", {
   label <- eq_clean_data(df) %>%

@@ -9,10 +9,6 @@ test_that("eq_clean_data returns a data frame", {
   expect_is(eq_clean_data(df), "data.frame")
 })
 
-test_that("eq_location_clean returns a data frame", {
-  expect_is(eq_location_clean(df), "data.frame")
-})
-
 test_that("eq_clean_data$datetime is Date type", {
   expect_is(eq_clean_data(df)$datetime, "Date")
 })

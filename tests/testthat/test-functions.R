@@ -2,7 +2,7 @@ context("Test functions")
 library(testthat)
 library(earthquake.dc)
 
-fpath <- system.file("exdata/signif.txt", package = "earthquake.dc")
+fpath <- system.file("inst/exdata/signif.txt", package = "earthquake.dc")
 df <- readr::read_delim(fpath, delim = "\t")
 
 test_that("eq_clean_data returns a data frame", {

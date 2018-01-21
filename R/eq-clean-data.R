@@ -13,7 +13,10 @@
 #' @importFrom dplyr %>% mutate select
 #' @importFrom lubridate ymd
 #' @importFrom stringr str_to_title str_pad
+#' @importFrom stats df
 #' @export
+#' @import utils 
+
 
 eq_clean_data <- function(df) {
   clean_data <- df %>%
@@ -28,7 +31,7 @@ eq_clean_data <- function(df) {
                                           side = "left", pad = "0"),
                   date_paste = paste(year, MONTH, DAY, sep = "-"),
                   datetime = lubridate::ymd(date_paste, truncated = 2)) %>%
-    dplyr::select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE,year,
+    dplyr::select(COUNTRY, LOCATION_NAME, LATITUDE, LONGITUDE, year,
                   EQ_MAG_ML, DEATHS, EQ_PRIMARY,  datetime)
   names(clean_data) <- tolower(names(clean_data))
   return(clean_data)
